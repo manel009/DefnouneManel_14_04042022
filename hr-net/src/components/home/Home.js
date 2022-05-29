@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import{connect} from "react-redux";
-import {Select} from '../select/Select.js'
+import {Select} from '../select/Select.js';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 //to get from store
 const mapStateToProps = state => {
@@ -15,29 +20,36 @@ const mapDispatchToProps = dispatch => {
   return {
     saveEmployee : (newEmployee) => {
       dispatch({type : "SAVE_NEW_EMPLOYEE", payload : { newEmployee:newEmployee} })
-    } 
+    } ,
+    employeeCreated : () => {
+        dispatch({type : "EMPLOYEE_CREATED", payload : {} })
+      }
   }
 };
 
 function Home(props){
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    let newEmployee = {
-        firstName: event.target.firstname.value,
-        lastName: event.target.lastname.value,
-        dateOfBirth: event.target.dateofbirth.value,
-        startDate: event.target.startdate.value,
-        department: event.target.department.value,
-        street: event.target.street.value,
-        city: event.target.city.value,
-        state: event.target.state.value,
-        zipCode: event.target.zipcode.value
+    
+    const handleClose = () => {
+        props.employeeCreated();
     };
-    props.saveEmployee(newEmployee);
-  }
 
-  const statesContent = [
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let newEmployee = {
+            firstName: event.target.firstname.value,
+            lastName: event.target.lastname.value,
+            dateOfBirth: event.target.dateofbirth.value,
+            startDate: event.target.startdate.value,
+            department: event.target.department.value,
+            street: event.target.street.value,
+            city: event.target.city.value,
+            state: event.target.state.value,
+            zipCode: event.target.zipcode.value
+        };
+        props.saveEmployee(newEmployee);
+    }
+
+    const statesContent = [
     {
         "text": "Alabama",
         "value": "AL"
@@ -344,12 +356,25 @@ function Home(props){
             <button type="submit">Save</button>
         </form>
 
+        <Dialog
+        open={props.isEmployeeCreated}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Employee Created!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+        </Dialog>
         
       </div>
-
-      { props.isEmployeeCreated ? 
-        <div id="confirmation" className="modal">Employee Created!</div> : ""
-      }
     </main>
   );
 }

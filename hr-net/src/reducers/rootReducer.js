@@ -23,6 +23,10 @@ const rootReducer = (state = initState,action) => {
         let newState = {...state, employeeList :newEmployeeList, isEmployeeCreated:true };
         return newState;
     } 
+    if(action.type === "EMPLOYEE_CREATED"){
+        let newState = {...state, isEmployeeCreated:false };
+        return newState;
+    } 
     return state;
 }
 
