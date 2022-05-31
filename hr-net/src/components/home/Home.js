@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import{connect} from "react-redux";
-import {Select} from '../select/Select.js';
+import Select from '../select/Select.js';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import Datepicker from '../datepicker/Datepicker.js';
 
 //to get from store
 const mapStateToProps = state => {
@@ -329,10 +330,10 @@ function Home(props){
             <input type="text" id="lastname" />
 
             <label htmlFor="date-of-birth">Date of Birth</label>
-            <input id="dateofbirth" type="text" />
+            <Datepicker id="dateofbirth" ></Datepicker>
 
             <label htmlFor="start-date">Start Date</label>
-            <input id="startdate" type="text" />
+            <Datepicker id="startdate" ></Datepicker>
 
             <fieldset className="address">
                 <legend>Address</legend>

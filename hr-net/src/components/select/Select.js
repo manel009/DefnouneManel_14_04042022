@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Select(props){
+export default function Select(props){
     return (
         <select id={props.name} name={props.name}>
             { props.content.map( contentline => {
