@@ -1,10 +1,7 @@
-import React, { useEffect }  from 'react';
+import React  from 'react';
 import{connect} from "react-redux";
 import { Link } from "react-router-dom";
-import $ from 'jquery';
-import 'jquery/dist/jquery.min.js';
-import "datatables.net-dt/js/dataTables.dataTables"
-import "datatables.net-dt/css/jquery.dataTables.min.css"
+import { DataGrid } from '@mui/x-data-grid';
 
 const mapStateToProps = state => {
     return {
@@ -14,27 +11,43 @@ const mapStateToProps = state => {
 
 
 function EmployeeList(props) {
-    useEffect(() => {
-        $('#employee-table').DataTable({
-            data: props.employeeList,
-            columns: [
-                { title: 'First Name', data: 'firstName' },
-                { title: 'Last Name', data: 'lastName' },
-                { title: 'Start Date', data: 'startDate' },
-                { title: 'Department', data: 'department' },
-                { title: 'Date of Birth', data: 'dateOfBirth' },
-                { title: 'Street', data: 'street' },
-                { title: 'City', data: 'city' },
-                { title: 'State', data: 'state' },
-                { title: 'Zip Code', data: 'zipCode' },
-            ]
-        });
-    });
+
+    const columns = [
+        { field: 'firstName', headerName: 'First name', width: 130 },
+        { field: 'lastName', headerName: 'Last name', width: 130 },
+        { field: 'startDate', headerName: 'Start Date', width: 110 },
+        { field: 'department', headerName: 'Department', width: 110 },
+        { field: 'dateOfBirth', headerName: 'Date of Birth', width: 110 },
+        { field: 'street', headerName: 'Street', width: 120 },
+        { field: 'city', headerName: 'City', width: 80 },
+        { field: 'state', headerName: 'State', width: 80 },
+        { field: 'zipCode', headerName: 'Zip Code', width: 90 },
+      ];
+
+    const rows = props.employeeList;
+
+    var id=0;
+    const getRowID = () => {
+        return id++;
+    }
+
+    console.log(rows);
+
 
     return (
       <div id="employee-div" className="container">
             <h1>Current Employees</h1>
-            <table id="employee-table" className="display"></table>
+            <div className='employee-list'>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                    getRowId={getRowID}
+                    scrollbarSize={1}
+                />
+            </div>
             <Link to="/">Home</Link>
         </div>
     );

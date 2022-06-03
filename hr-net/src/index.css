@@ -57,3 +57,13 @@ body {
   align-items: center;
   padding: 10px;
 }
+
+#employee-div{
+  height: 500px;
+  width: 100%;
+}
+
+.employee-list{
+  height: 500px;
+  width: 80%;
+}
