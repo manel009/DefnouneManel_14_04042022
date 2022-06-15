@@ -324,10 +324,10 @@ function Home(props){
         <form onSubmit={handleSubmit} id="create-employee">
           
             <label htmlFor="first-name">First Name</label>
-            <input type="text" id="firstname" />
+            <input type="text" id="firstname" required/>
 
             <label htmlFor="last-name">Last Name</label>
-            <input type="text" id="lastname" />
+            <input type="text" id="lastname"required />
 
             <label htmlFor="date-of-birth">Date of Birth</label>
             <Datepicker id="dateofbirth" ></Datepicker>
