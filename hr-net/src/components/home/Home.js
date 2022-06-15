@@ -318,7 +318,7 @@ function Home(props){
 
       <div className="container">
         
-        <Link to="/employee-list">View Current Employees</Link>
+        <Link to="/employee-list"> <button className="btn-employees">View Current Employees</button></Link>
         <h2>Create Employee</h2>
       
         <form onSubmit={handleSubmit} id="create-employee">
