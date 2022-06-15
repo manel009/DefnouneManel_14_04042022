@@ -48,7 +48,7 @@ function EmployeeList(props) {
                     scrollbarSize={1}
                 />
             </div>
-            <Link to="/">Home</Link>
+            <Link to="/"><button>Home</button></Link>
         </div>
     );
 }
